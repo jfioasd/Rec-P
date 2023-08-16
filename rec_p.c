@@ -29,19 +29,10 @@ int skip_bkt(int pc, char *prog, char up, char down, int step) {
     return offset;
 }
 
-bool run(char *prog, register int sp, int *stack) {
-    // Return value = whether we need to break out of an infinite loop
-    // (0) = no, (1) = yes
+void run(char *prog, register int sp, int *stack) {
     int x, v;
-    bool debug = false;
-
-    int next_dbg = -1;
 
     for(int pc = 0; prog[pc]; pc++) {
-        if(pc == next_dbg) {
-            debug = true;
-            next_dbg = -1;
-        }
         sp = (sp < 0) ? 0 : sp;
 
         switch(prog[pc]) {
@@ -67,6 +58,10 @@ bool run(char *prog, register int sp, int *stack) {
             
             case '_':
                 stack[sp-1] = - stack[sp-1];
+                break;
+
+            case '=':
+                stack[sp-1] = stack[sp-1] == 0;
                 break;
 
             case '<':
@@ -116,44 +111,11 @@ bool run(char *prog, register int sp, int *stack) {
             case 's':
                 printStack(sp, stack, true);
                 break;
-
-            case 'b':
-                debug = true;
-                break;
-        }
-
-        if (debug && !isspace(prog[pc])) {
-            printf("(%d) '%c'", pc, prog[pc]);
-            printStack(sp, stack, false);
-
-            char cmd;
-            if (scanf("%c", &cmd) == EOF) {
-                exit(0);
-            }
-
-            switch (cmd){
-                // Don't need to handle for '\n' case
-                case 'c':
-                    getchar();
-                    debug = false;
-                    break;
-                case 'm':
-                    getchar();
-                    debug = false;
-                    if(prog[pc] == '[')
-                        next_dbg = skip_bkt(pc, prog, '[', ']', 1) + 1;
-                    break;
-                case 'q':
-                    exit(0);
-                    break;
-            }
         }
     }
     
     // For REPL (since local values are lost across function calls)
     sp_ret = sp;
-
-    return 0;
 }
 
 int main(int argc, char **argv) {
