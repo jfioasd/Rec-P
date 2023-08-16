@@ -1,5 +1,5 @@
 # Rec+
-This is basically a rip-off of my previous language, [Rec](https://github.com/jfioasd/rec), which (I hope) is easier to program in.
+This is basically a derivative of my previous language, [Rec](https://github.com/jfioasd/rec), which (I hope) is easier to program in.
 
 You can compile `rec_p.c` with a compiler that supports C99.
 
