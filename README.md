@@ -15,4 +15,4 @@ The language has the following commands:
 |`:`| Load; Pops `x`, pushes `x`th-to-top item on stack. |
 |`;`| Store; Pops `v` and `x`. Assigns `x`th-to-top item on stack to `v`.|
 |`[ ... ]`| Infinite loop; executes <code>...</code> forever. |
-|`^`| Pops `x`. If `x == 0`, break out of the innermost `[ ... ]` loop. <br> (If not in a `[ ... ]` loop, terminates program if `x == 0`.) |
+|`^`| Pops `x`. If `x == 0`, break out of the innermost `[ ... ]` loop. |
