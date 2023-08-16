@@ -12,8 +12,7 @@ The language has the following commands:
 |`*`| Multiplication. |
 |`_`| Negative; Push `-x`. |
 |`=`| Pushes whether `x == 0`. |
-|`<`| Pushes whether `x < 0`. |
 |`:`| Load; Pops `x`, pushes `x`th-to-top item on stack. |
 |`;`| Store; Pops `v` and `x`. Assigns `x`th-to-top item on stack to `v`.|
 |`[ ... ]`| Infinite loop; executes <code>...</code> forever. |
-|`^`| Pops `x`. If `x == 0`, break out of the innermost `[ ... ]` loop. |
+|`^`| Pops `x`. If `x != 0`, break out of the innermost `[ ... ]` loop. |
