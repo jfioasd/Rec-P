@@ -64,10 +64,6 @@ void run(char *prog, register int sp, int *stack) {
                 stack[sp-1] = stack[sp-1] == 0;
                 break;
 
-            case '<':
-                stack[sp-1] = stack[sp-1] < 0;
-                break;
-
             case ':':
                 x = stack[sp-1];
                 stack[sp-1] = stack[sp-x-2];
@@ -81,7 +77,7 @@ void run(char *prog, register int sp, int *stack) {
                 break;
 
             case '^':
-                if (stack[--sp] == 0)
+                if (stack[--sp] != 0)
                     pc = skip_bkt(pc, prog, '[', ']', 1) - 1;
                 break;
 
