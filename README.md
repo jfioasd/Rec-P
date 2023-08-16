@@ -11,6 +11,7 @@ The language has the following commands:
 |`+`| Addition. |
 |`*`| Multiplication. |
 |`_`| Negative; Push `-x`. |
+|`=`| Pushes whether `x == 0`. |
 |`<`| Pushes whether `x < 0`. |
 |`:`| Load; Pops `x`, pushes `x`th-to-top item on stack. |
 |`;`| Store; Pops `v` and `x`. Assigns `x`th-to-top item on stack to `v`.|
